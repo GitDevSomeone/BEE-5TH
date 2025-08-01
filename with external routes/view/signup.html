@@ -9,15 +9,16 @@
 <body>
     <main>
         <h1>Signup</h1>
-        <form>
+        <form action="/signup" method="post" enctype="multipart/form-data">
             <input id="name" type="text" name="name" placeholder="enter name"><br>
             <input id="username" type="text" name="username" placeholder = "enter username"><br>
             <input id="password" type="password" name="password" placeholder = "enter password"><br>
+            <input type="file" id="img" name="profile_picture"><br>
             <button id="btn">signup</button>
         </form>
         <p>Already a user ?<a href="/login">login</a> </p>
     </main>
-    <script>
+    <!-- <script>
         const name = document.getElementById('name')
         const username = document.getElementById("username")
         const password = document.getElementById('password')
@@ -40,6 +41,6 @@
                 body: JSON.stringify(dataObj)
             })
         })
-    </script>
+    </script> -->
 </body>
 </html>

@@ -1,10 +1,19 @@
 const express = require('express')
 const fs = require('fs')
 const path = require('path')
+const session = require('express-session')
 const app = express()
+
 app.use(express.static("public"))
 app.use(express.json()) // middle ware for parsing json data
 app.use(express.urlencoded()) // for parsing form data 
+app.use(session({
+    secret: "secretkey",
+    saveUninitialized: false,
+    resave: false,
+    rolling: true
+}))
+
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'login.html'))
@@ -12,10 +21,6 @@ app.get('/', (req, res) => {
 
 app.get('/signup', (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'signup.html'))
-})
-
-app.get('/home', (req, res)=>{
-    res.sendFile(path.join(__dirname , 'pages' , "home.html"))
 })
 
 app.post('/signup', (req, res) => {
@@ -48,6 +53,7 @@ app.post('/login', (req, res)=>{
             let userFound = data.find(user => user.username == req.body.username)
             if(userFound){
                 if(userFound.password == req.body.password){
+                    req.session.isLoggedIn = true;
                     res.redirect("/home")
                 }else{
                     res.send('invalid password')
@@ -61,6 +67,17 @@ app.post('/login', (req, res)=>{
     } catch (error) {
         
     }
+})
+
+
+
+app.get('/home', (req, res)=>{
+    if(req.session.isLoggedIn == true){
+        res.sendFile(path.join(__dirname , 'pages' , "home.html"))
+    }else{
+        res.sendFile(path.join(__dirname , 'pages' , "login.html"))
+    }
+   
 })
 
 app.listen(3000, () => {
