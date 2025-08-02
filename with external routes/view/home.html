@@ -28,6 +28,10 @@
 </head>
 <body>
     <h1>Brands</h1>
+    <div> 
+        <img id="profile" style="height: 100px; width: 100px;"/>
+        <button id="logout">logout</button>
+    </div>
     <ul class="brand-list">
         <li>Apple</li>
         <li>Samsung</li>
@@ -40,5 +44,11 @@
         <li>Asus</li>
         <li>Acer</li>
     </ul>
+    <script>
+        let photo = document.cookie.split("=")[1]
+        const img = document.getElementById("profile")
+        img.src = `/${photo}`
+        
+    </script>
 </body>
 </html>

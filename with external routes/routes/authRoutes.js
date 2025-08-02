@@ -63,9 +63,12 @@ router.post('/login', (req, res) => {
                 let userFound = data.find(ele => ele.username == req.body.username);
                 if (userFound) {
                     if (userFound.password == req.body.password) {
-                        res.redirect('/home');
+                        req.session.isLoggedIn = true
+                        res.cookie("userphoto", userFound.profilePicture)
+                        res.redirect('/user/home');
                     } else {
-                        res.json({ messgage: "invalid password" });
+                        res.redirect("/")
+                        // res.json({ messgage: "invalid password" });
                     }
                 } else {
                     res.redirect("/");
