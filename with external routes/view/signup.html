@@ -9,11 +9,15 @@
 <body>
     <main>
         <h1>Signup</h1>
-        <form action="/signup" method="post" enctype="multipart/form-data">
+        <form action="/signup" method="post" >
             <input id="name" type="text" name="name" placeholder="enter name"><br>
             <input id="username" type="text" name="username" placeholder = "enter username"><br>
             <input id="password" type="password" name="password" placeholder = "enter password"><br>
-            <input type="file" id="img" name="profile_picture"><br>
+            <select name="role" >
+                <option>user</option>
+                <option>admin</option>
+            </select>
+            <!-- <input type="file" id="img" name="profile_picture"><br> -->
             <button id="btn">signup</button>
         </form>
         <p>Already a user ?<a href="/login">login</a> </p>

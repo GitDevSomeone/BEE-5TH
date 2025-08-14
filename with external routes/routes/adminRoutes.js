@@ -1,10 +1,13 @@
 const { Router } = require('express')
+
 const path = require('path')
 const fs = require('fs')
 const {v4: uuidv4 } = require('uuid')
+const { onlyAdmin } = require('../middleware/protectRoute')
 
 const router = Router()
 
+router.use(onlyAdmin);
 router.get('/home', (req, res) => {
     try {
         res.sendFile(path.join(__dirname, "../view", "addproduct.html"));

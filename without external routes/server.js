@@ -1,18 +1,19 @@
 const express = require('express')
 const fs = require('fs')
 const path = require('path')
-const session = require('express-session')
+const jwt = require("jsonwebtoken")
+// const session = require('express-session')
 const app = express()
 
 app.use(express.static("public"))
 app.use(express.json()) // middle ware for parsing json data
 app.use(express.urlencoded()) // for parsing form data 
-app.use(session({
-    secret: "secretkey",
-    saveUninitialized: false,
-    resave: false,
-    rolling: true
-}))
+// app.use(session({
+//     secret: "secretkey",
+//     saveUninitialized: false,
+//     resave: false,
+//     rolling: true
+// }))
 
 
 app.get('/', (req, res) => {

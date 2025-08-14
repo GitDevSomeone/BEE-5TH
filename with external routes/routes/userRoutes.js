@@ -4,7 +4,8 @@ const path = require('path')
 const router = Router()
 const protect = require('../middleware/protectRoute');
 
-router.get('/home', protect.protectRoute ,(req, res) => {
+router.get('/home',protect.protectRoute ,(req, res) => {
+    console.log("reached /user/home");
     try {
         res.sendFile(path.join(__dirname, "../view", "home.html"));
     } catch (error) {
